@@ -85,13 +85,7 @@ const Employees = () => {
     designation: "Graphic Designer",
     gender: "male",
     teamName: "TeamD"}])
-
-
-
-
-
   
-
   return (
     <main>
     
