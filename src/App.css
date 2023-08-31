@@ -1,3 +1,9 @@
 body{
   font-family : Arial;
 }
+
+/*card layout in a grid but in 3 times  */
+.card-collection{
+  display:grid;
+  grid-template-columns :1fr 1fr 1fr 
+}

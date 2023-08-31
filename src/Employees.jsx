@@ -1,5 +1,11 @@
-import {useState} from 'react'
+import {useState} from 'react';
+
+import femaleProfile from './images/femaleProfile.jpg';
+import maleProfile from './images/maleProfile.jpg';
+
+
 const Employees = () => {
+  const [selectedTeam, setTeam] = useState("TeamB");
   
   const [employees, setEmployees] = useState([{ 
     id: 1,
@@ -34,10 +40,7 @@ const Employees = () => {
     fullName: "David Henry",
     designation: "DotNet Developer",
     gender: "male",
-    teamName: "TeamB"}
-
-   },
-  {
+    teamName: "TeamB"},{
     id: 6,
     fullName: "Sarah Blake",
     designation: "SQL Server DBA",
@@ -66,7 +69,7 @@ const Employees = () => {
     teamName: "TeamC"
   },
   {
-      id: 10,
+    id: 10,
     fullName: "Daniel Young",
     designation: "Python Developer",
     gender: "male",
@@ -84,12 +87,44 @@ const Employees = () => {
     fullName: "Devin Monroe",
     designation: "Graphic Designer",
     gender: "male",
-    teamName: "TeamD"}])
+    teamName: "TeamD"
+  }]);
+
+  function handleTeamSelectionChange(event){}
+
   
   return (
-    <main>
-    
+    <main className = "container"> 
+      <div class="row justify-content-center mt-3 mb-3">
+        <div class="col-6">
+          {/* creating drop down menu for teams   */}
+          <select className = "form-select form-select-lg" value = {selectedTeam} onChange ={handleTeamSelectionChange}>
+            <option value = "TeamA">TeamA</option>
+            <option value = "TeamB">TeamB</option>
+            <option value = "TeamC">TeamC</option>
+            <option value = "TeamD">TeamD</option>
+          </select>
+          
+          <div class= "card-collection">
+            {
+              employees.map((employee) => (
+                <div id={employee.id} className ="card m-2" style = {{cursor:"pointer"}}>
+                  {/* Writing java function to determine profile pic match gender */}
+                  {(employee.gender === 'male')? <img src = {maleProfile} className = "card-img-top"/>
+                                                :<img src = {femaleProfile} className = "card-img-top"/>}
+                                                  
+                  <div className ="card-body">
+                    <h5 classnName = "card-title">Full Name: {employee.fullName}</h5>
+                    <p className = "card-text"><b>Designation:</b>{employee.designation}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </main>
   )
 }
+
 export default Employees
